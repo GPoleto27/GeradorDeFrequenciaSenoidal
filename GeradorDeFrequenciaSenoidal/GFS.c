@@ -6,15 +6,15 @@
 #define PI 3.141592
 int main ()
 {
-    slWindow(800, 600, "Gerador de Frequência Senoidal", 0);
+    slWindow(800, 600, "Gerador de FrequÃªncia Senoidal", 0);
     slSetFont(slLoadFont("arial_narrow_7.ttf"), 24);
     slSetTextAlign(SL_ALIGN_CENTER);
-    int f = 0, d = 1000, t=1, xG = 0, yG = 0;
-    double x = 50.0, y = 300.0;
+    int f = 0, t=1, xG = 0, yG = 0;
+    double x = 50.0, y = 300.0, d = 1000;
     char *freq = malloc(4*sizeof(char)), *dur = malloc(4*sizeof(char));
     while(!slShouldClose()&&!slGetKey(SL_KEY_ESCAPE))
     {
-        sprintf(dur, "%d", d);
+        sprintf(dur, "%.1lf", (d/1000));
         sprintf(freq, "%d", f);
         slSetForeColor(1,1,1,1);
         slSetFontSize(40);
@@ -23,7 +23,7 @@ int main ()
         slText(625, 50, freq);
         slText(725, 50, "Hz");
         slText(125, 50, dur);
-        slText(225, 50, "ms");
+        slText(225, 50, "s");
 
         slSetForeColor(0,1,0,1); ///Verde
         slText(400, 15, "EXECUTAR");
@@ -49,7 +49,7 @@ int main ()
         if (slGetMouseX()> 60 && slGetMouseX()< 85 && slGetMouseY() > 25 &&  slGetMouseY() < 75 && slGetMouseButton(SL_MOUSE_BUTTON_LEFT)) /// - ms
         {
             if (d > 100)
-                d -=1;
+                d -=100;
         }
 
         if (slGetMouseX()> 560 && slGetMouseX()< 585 && slGetMouseY() > 25 &&  slGetMouseY() < 75 && slGetMouseButton(SL_MOUSE_BUTTON_LEFT)) /// - ms
@@ -60,8 +60,8 @@ int main ()
 
         if (slGetMouseX()> 160 && slGetMouseX()< 185 && slGetMouseY() > 25 &&  slGetMouseY() < 75 && slGetMouseButton(SL_MOUSE_BUTTON_LEFT)) /// - ms
         {
-            if (d < 9999)
-                d +=1;
+            if (d < 30000)
+                d +=100;
         }
 
         if (slGetMouseX()> 660 && slGetMouseX()< 685 && slGetMouseY() > 25 &&  slGetMouseY() < 75 && slGetMouseButton(SL_MOUSE_BUTTON_LEFT)) /// - ms
