@@ -21,7 +21,7 @@ int main ()
         slText(125, 510, "Escala x = 1:69");
         slSetFontSize(40);
         slText (400, 550, "Gerador de Frequencia Senoidal");
-        slRectangleOutline (400, 300, 700, 400);
+        slRectangleOutline (399, 300, 697, 400);
         slText(625, 50, freq);
         slText(725, 50, "Hz");
         slText(125, 50, dur);
@@ -31,13 +31,13 @@ int main ()
         slText(400, 15, "EXECUTAR");
         slText(175, 50, "+");
         slText(675, 50, "+");
-        slLine(50,300,750,300);
+        slLine(50,300,747,300);
 
         slSetForeColor(1,0,0,1);
         slText(75, 50, "-");
         slText(575, 50, "-");
 
-        while (x <= 750)
+        while (x <= 747)
         {
             y = 300+(190*sin(-(f*2*PI)*t));
             xG = (int)x;
@@ -55,29 +55,39 @@ int main ()
                 d -=100;
         }
 
-        if (slGetMouseX()> 560 && slGetMouseX()< 585 && slGetMouseY() > 25 &&  slGetMouseY() < 75 && slGetMouseButton(SL_MOUSE_BUTTON_LEFT)) /// - ms
+        if (slGetMouseX()> 560 && slGetMouseX()< 585 && slGetMouseY() > 25 &&  slGetMouseY() < 75 && slGetMouseButton(SL_MOUSE_BUTTON_LEFT)) /// - f
         {
             if (f > 0)
-                f -=1;
+            {
+                if ((f-1)%69 == 0)
+                    f-=1;
+                else
+                    f -=2;
+            }
         }
 
-        if (slGetMouseX()> 160 && slGetMouseX()< 185 && slGetMouseY() > 25 &&  slGetMouseY() < 75 && slGetMouseButton(SL_MOUSE_BUTTON_LEFT)) /// - ms
+        if (slGetMouseX()> 160 && slGetMouseX()< 185 && slGetMouseY() > 25 &&  slGetMouseY() < 75 && slGetMouseButton(SL_MOUSE_BUTTON_LEFT)) /// + ms
         {
             if (d < 30000)
                 d +=100;
         }
 
-        if (slGetMouseX()> 660 && slGetMouseX()< 685 && slGetMouseY() > 25 &&  slGetMouseY() < 75 && slGetMouseButton(SL_MOUSE_BUTTON_LEFT)) /// - ms
+        if (slGetMouseX()> 660 && slGetMouseX()< 685 && slGetMouseY() > 25 &&  slGetMouseY() < 75 && slGetMouseButton(SL_MOUSE_BUTTON_LEFT)) /// + f
         {
             if (f < 9999)
-                f +=1;
+            {
+                if ((f+1)%69 == 0)
+                    f+=1;
+                else
+                    f +=2;
+            }
         }
 
-        if (slGetMouseX()> 315 && slGetMouseX()< 475 && slGetMouseY() > 10 &&  slGetMouseY() < 50 && slGetMouseButton(SL_MOUSE_BUTTON_LEFT)) /// - ms
-            {
-                Sleep(100);
+        if (slGetMouseX()> 315 && slGetMouseX()< 475 && slGetMouseY() > 10 &&  slGetMouseY() < 50) /// PLAY
+        {
+            if (slGetMouseButton(SL_MOUSE_BUTTON_LEFT))
                 Beep(f, d);
-            }
+        }
         slRender();
     }
     return 0;
