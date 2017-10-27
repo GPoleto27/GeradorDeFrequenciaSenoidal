@@ -12,7 +12,7 @@ int main ()
     int f1 = 552, f2 = 277, Ym1 = 125, Ym2 = 125, t1 = 1, t2 = 2, t = 0, tt = 0,
         xG = 0, yG = 0, mode = 0;
     double x = 50.0, y1 = 300.0, y2 = 300.0, yr = 0;
-    short form1 = 0, form2 = 1, din1 = 0, din2 = 0, est1 = 0, est2 = 0, sinal1 = 0, sinal2 = 0;
+    short form1 = 0, form2 = 1, din1 = 0, din2 = 0, sinal1 = 0, sinal2 = 0;
     char    *Ym1c   = malloc(sizeof(char)),     *Ym2c   = malloc(sizeof(char)),
             *f1c    = malloc(sizeof(char)),     *f2c    = malloc(sizeof(char)),
             *t1c    = malloc(sizeof(char)),     *t2c    = malloc(sizeof(char)),
@@ -26,7 +26,7 @@ int main ()
         slText(25, 270, "0");
         slText(25,5,"-250");
         slText(25,525,"250");
-        slText(710,5,"x = 747");
+        slText(710,5,"x = 697");
         sprintf(freq1, "%d", f1);
         sprintf(freq2, "%d", f2);
         sprintf(modo, "%d", mode+1);
@@ -37,7 +37,7 @@ int main ()
         sprintf(f1c, "%d", f1);
         sprintf(f2c, "%d", f2);
         sprintf(posX, "%d", slGetMouseX()-50);
-        sprintf(posY, "%d", slGetMouseY()-277);
+        sprintf(posY, "%d", slGetMouseY()-275);
         if (slGetMouseX()>= 50 && slGetMouseX()<= 747 && slGetMouseY() >= 25 &&  slGetMouseY() <= 525)
         {
             slLine(slGetMouseX(),25,slGetMouseX(),525);
